@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Data View</title>
+    </head>
+
+    <body>
+        <h2>Data</h2>
+        <li id="dataList" style="list-style-type:none"></li>
+
+        <script>
+            
+            console.log('got here')
+
+            fetch(`/data_get?name={{name}}&age={{age}}`)
+            .then(response => response.json())
+            .then(data => {
+                displayData(data)
+            })
+            .catch(error => console.error('Error fetching data:', error));
+            
+            function displayData( data ){
+                
+                const list = document.getElementById('dataList');
+                list.innerHTML = '';
+
+                const name = document.createElement('li');
+                name.textContent = "Name: " + data.name 
+                list.append(name);
+
+                const age = document.createElement('li');
+                age.textContent = "Age: " + data.age;
+                list.append(age);
+
+                const id = getElementById = document.createElement('li');
+                id.textContent = "ID: " + data.id;
+                list.append(id);
+            }
+        </script>
+    </body>
+</html>
